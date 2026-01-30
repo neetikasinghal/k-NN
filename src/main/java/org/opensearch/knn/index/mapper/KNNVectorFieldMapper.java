@@ -31,11 +31,13 @@ import org.opensearch.core.common.Strings;
 import org.opensearch.core.xcontent.ToXContent;
 import org.opensearch.core.xcontent.XContentBuilder;
 import org.opensearch.core.xcontent.XContentParser;
+import org.opensearch.index.mapper.DerivedFieldGenerator;
 import org.opensearch.index.mapper.FieldMapper;
 import org.opensearch.index.mapper.Mapper;
 import org.opensearch.index.mapper.MapperParsingException;
 import org.opensearch.index.mapper.ParametrizedFieldMapper;
 import org.opensearch.index.mapper.ParseContext;
+import org.opensearch.index.mapper.StoredFieldFetcher;
 import org.opensearch.knn.common.KNNConstants;
 import org.opensearch.knn.index.DerivedKnnByteVectorField;
 import org.opensearch.knn.index.DerivedKnnFloatVectorField;
@@ -921,6 +923,17 @@ public abstract class KNNVectorFieldMapper extends ParametrizedFieldMapper {
         if (includeDefaults || ignoreMalformed.explicit()) {
             builder.field(Names.IGNORE_MALFORMED, ignoreMalformed.value());
         }
+    }
+
+    @Override
+    protected void canDeriveSourceInternal() {}
+
+    /**
+     * Derive source using stored field, which would always be present for derived source enabled index field
+     */
+    @Override
+    protected DerivedFieldGenerator derivedFieldGenerator() {
+        return new DerivedFieldGenerator(mappedFieldType, new BinaryDocValuesFetcher((KNNVectorFieldType) mappedFieldType, simpleName()), new StoredFieldFetcher(mappedFieldType, simpleName()));
     }
 
     /**

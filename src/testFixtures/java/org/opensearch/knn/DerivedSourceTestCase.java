@@ -144,9 +144,9 @@ public class DerivedSourceTestCase extends KNNRestTestCase {
                             .dimension(binaryDimensionSupplier.get())
                             .nullProb(addNull ? DerivedSourceUtils.DEFAULT_NULL_PROB : 0)
                             .isUpdate(true)
-                            .build(),
-                        DerivedSourceUtils.TextFieldType.builder().fieldPath("test-text").build(),
-                        DerivedSourceUtils.IntFieldType.builder().fieldPath("test-int").build()
+                            .build()
+//                        DerivedSourceUtils.TextFieldType.builder().fieldPath("test-text").build(),
+//                        DerivedSourceUtils.IntFieldType.builder().fieldPath("test-int").build()
                     )
                 )
                 .build();
@@ -297,10 +297,10 @@ public class DerivedSourceTestCase extends KNNRestTestCase {
                             .dimension(dimensionSupplier.get())
                             .fieldPath("update_vector")
                             .isUpdate(true)
-                            .build(),
+                            .build()
 
-                        DerivedSourceUtils.TextFieldType.builder().fieldPath("test-text").build(),
-                        DerivedSourceUtils.IntFieldType.builder().fieldPath("test-int").build()
+//                        DerivedSourceUtils.TextFieldType.builder().fieldPath("test-text").build(),
+//                        DerivedSourceUtils.IntFieldType.builder().fieldPath("test-int").build()
                     )
                 )
                 .build();

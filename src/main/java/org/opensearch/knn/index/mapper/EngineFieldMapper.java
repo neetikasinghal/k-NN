@@ -179,6 +179,7 @@ public class EngineFieldMapper extends KNNVectorFieldMapper {
             // MethodFieldMapper attributes
             this.vectorFieldType = null;
             this.useLuceneBasedVectorField = KNNVectorFieldMapperUtil.useLuceneKNNVectorsFormat(indexCreatedVersion);
+//            this.useLuceneBasedVectorField = false;
             KNNEngine knnEngine = resolvedKnnMethodContext.getKnnEngine();
             QuantizationConfig quantizationConfig = knnLibraryIndexingContext.getQuantizationConfig();
             this.fieldType = new FieldType(KNNVectorFieldMapper.Defaults.FIELD_TYPE);

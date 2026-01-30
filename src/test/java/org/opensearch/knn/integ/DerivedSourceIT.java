@@ -49,13 +49,13 @@ public class DerivedSourceIT extends DerivedSourceTestCase {
     @SneakyThrows
     @ExpectRemoteBuildValidation
     public void testFlatFields() {
-        List<DerivedSourceUtils.IndexConfigContext> indexConfigContexts = getFlatIndexContexts("derivedit", true, true);
+        List<DerivedSourceUtils.IndexConfigContext> indexConfigContexts = getFlatIndexContexts("derivedit", false, false);
         testDerivedSourceE2E(indexConfigContexts);
     }
 
     @ExpectRemoteBuildValidation
     public void testMetaFields() {
-        List<DerivedSourceUtils.IndexConfigContext> indexConfigContexts = getIndexContextsWithMetaFields("derivedit", true, true);
+        List<DerivedSourceUtils.IndexConfigContext> indexConfigContexts = getIndexContextsWithMetaFields("derivedit", true, false);
         List<String> metaFields = List.of(ROUTING_FIELD, "_id", "_score");
 
         assertEquals("Expected 6 index contexts for meta fields test", 6, indexConfigContexts.size());

@@ -15,6 +15,7 @@ import org.apache.lucene.util.BytesRef;
 import org.opensearch.common.settings.Settings;
 import org.opensearch.common.xcontent.XContentFactory;
 import org.opensearch.core.xcontent.XContentBuilder;
+import org.opensearch.index.IndexSettings;
 import org.opensearch.indices.replication.common.ReplicationType;
 import org.opensearch.knn.index.KNNSettings;
 import org.opensearch.knn.index.VectorDataType;
@@ -81,6 +82,8 @@ public class DerivedSourceUtils {
         )
         .put("index.knn", true)
         .put(KNNSettings.KNN_DERIVED_SOURCE_ENABLED, false)
+        .put(IndexSettings.INDEX_DERIVED_SOURCE_SETTING.getKey(), true)
+        .put(IndexSettings.INDEX_DERIVED_SOURCE_TRANSLOG_ENABLED_SETTING.getKey(), true)
         .build();
     private static final Logger log = LogManager.getLogger(DerivedSourceUtils.class);
 

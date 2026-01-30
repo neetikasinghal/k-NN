@@ -86,7 +86,7 @@ public interface VectorValueExtractorStrategy {
             }
         }
 
-        private <T> T extractFromBinaryDocValues(VectorDataType vectorDataType, BinaryDocValues values) throws IOException {
+        public static <T> T extractFromBinaryDocValues(VectorDataType vectorDataType, BinaryDocValues values) throws IOException {
             BytesRef bytesRef = values.binaryValue();
             if (vectorDataType == VectorDataType.FLOAT) {
                 return (T) getFloatVectorFromByteRef(bytesRef);
@@ -120,7 +120,7 @@ public interface VectorValueExtractorStrategy {
             return (T) docIdsIteratorValues.getLastAccessedVector();
         }
 
-        private float[] getFloatVectorFromByteRef(final BytesRef bytesRef) {
+        private static float[] getFloatVectorFromByteRef(final BytesRef bytesRef) {
             final KNNVectorSerializer vectorSerializer = KNNVectorAsCollectionOfFloatsSerializer.INSTANCE;
             return vectorSerializer.byteToFloatArray(bytesRef);
         }
